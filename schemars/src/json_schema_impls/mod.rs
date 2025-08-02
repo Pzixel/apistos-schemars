@@ -74,6 +74,8 @@ mod nonzero_unsigned;
 mod primitives;
 #[cfg(feature = "primitive_types")]
 mod primitive_types;
+#[cfg(feature = "alloy_primitives")]
+mod alloy_primitives;
 #[cfg(feature = "semver")]
 mod semver;
 mod sequences;
