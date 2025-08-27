@@ -41,7 +41,7 @@ dependencies = [
 
 [[package]]
 name = "apistos-schemars"
-version = "0.8.21"
+version = "0.8.22"
 dependencies = [
  "alloy-primitives",
  "apistos-schemars_derive",
@@ -72,7 +72,7 @@ dependencies = [
 
 [[package]]
 name = "apistos-schemars_derive"
-version = "0.8.21"
+version = "0.8.22"
 dependencies = [
  "pretty_assertions",
  "proc-macro2",
