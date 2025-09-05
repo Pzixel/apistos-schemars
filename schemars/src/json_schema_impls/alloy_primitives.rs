@@ -140,3 +140,28 @@ schema_fixed_hash!(B224, 56);
 schema_fixed_hash!(B256, 64);
 
 schema_fixed_hash!(Address, 40);
+
+
+impl JsonSchema for alloy_primitives::Bytes {
+    no_ref_schema!();
+
+    fn schema_name() -> String {
+        Self::schema_id().to_string()
+    }
+
+    fn schema_id() -> Cow<'static, str> {
+        Cow::Borrowed(std::any::type_name::<Self>())
+    }
+
+    fn json_schema(_: &mut SchemaGenerator) -> Schema {
+        SchemaObject {
+            instance_type: Some(InstanceType::String.into()),
+            string: Some(Box::new(StringValidation {
+                pattern: Some("0x[0-9a-fA-F]+".to_string()),
+                ..Default::default()
+            })),
+            ..Default::default()
+        }
+        .into()
+    }
+}
