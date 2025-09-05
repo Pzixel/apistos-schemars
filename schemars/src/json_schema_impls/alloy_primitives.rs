@@ -21,6 +21,10 @@ macro_rules! schema_uint {
             fn json_schema(_: &mut SchemaGenerator) -> Schema {
                 SchemaObject {
                     instance_type: Some(InstanceType::String.into()),
+                    string: Some(Box::new(StringValidation {
+                        pattern: Some("(\\d+)|(0x[0-9a-fA-F]+)".to_string()),
+                        ..Default::default()
+                    })),
                     ..Default::default()
                 }
                 .into()
@@ -46,7 +50,7 @@ macro_rules! schema_fixed_hash {
                 SchemaObject {
                     instance_type: Some(InstanceType::String.into()),
                     string: Some(Box::new(StringValidation {
-                        pattern: Some(concat!("0x\\w{", stringify!($len_in_chars),"}").to_string()),
+                        pattern: Some(concat!("0x[0-9a-fA-F]{", stringify!($len_in_chars),"}").to_string()),
                         ..Default::default()
                     })),
                     ..Default::default()
